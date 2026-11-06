@@ -24,6 +24,10 @@ Environment variables (see `.env.example`):
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin, no trailing slash |
 | `ALLOW_INDEXING` | `true` on Production at launch. Anything else blocks all crawlers |
 
+Until the sending domain is verified in Resend, set `CONTACT_FROM_EMAIL` to `Campbell Munro Website <onboarding@resend.dev>` and `CONTACT_TO_EMAIL` to the email address the Resend account was registered with (Resend's test sender delivers nowhere else). Switch both once the domain is verified.
+
+The canonical host is `www.campbellmunro.co.uk`; the bare domain redirects to it (`next.config.ts`).
+
 `ALLOW_INDEXING` is read at build time, so redeploy after changing it. Without Resend configured, `npm run dev` logs the enquiry and carries on; production shows an error with the phone number.
 
 ## Before launch

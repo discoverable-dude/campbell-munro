@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"], qualities: [70, 75] },
   async redirects() {
-    return REDIRECTS.map((r) => ({ ...r, permanent: true }));
+    return [
+      // Canonical host is www: send the bare domain there, keeping the path.
+      { source: "/:path*", has: [{ type: "host" as const, value: "campbellmunro.co.uk" }], destination: "https://www.campbellmunro.co.uk/:path*", permanent: true },
+      ...REDIRECTS.map((r) => ({ ...r, permanent: true })),
+    ];
   },
   async headers() {
     return [

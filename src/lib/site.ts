@@ -1,4 +1,4 @@
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://campbellmunro.co.uk").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.campbellmunro.co.uk").replace(/\/$/, "");
 
 /** Search engines are blocked until ALLOW_INDEXING=true (set on Production only, at launch). */
 export const ALLOW_INDEXING = process.env.ALLOW_INDEXING === "true";

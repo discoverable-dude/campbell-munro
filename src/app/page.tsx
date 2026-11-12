@@ -1,9 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CtaBand, AccordionItem, TextLink } from "@/components/Sections";
-import { HeroVideo } from "@/components/HeroVideo";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { Icon, IconBox } from "@/components/Icon";
-import { hero, panels, planning, trust } from "@/content/home";
+import { heroSlides, panels, planning, trust } from "@/content/home";
 import { stories } from "@/content/who";
 import { pageMeta } from "@/lib/metadata";
 
@@ -18,21 +17,7 @@ export default function HomePage() {
   const homeStories = stories;
   return (
     <>
-      <section className="m-hero" data-hero>
-        <Image className="m-hero-img" src="/images/hero-heath.jpg" alt="" fill priority sizes="100vw" quality={70} />
-        <HeroVideo />
-        <div className="m-hero-shade" />
-        <div className="m-w m-hero-in">
-          <div className="m-hero-txt">
-            <h1>{hero.title}</h1>
-            <p className="m-lede">{hero.lede}</p>
-            <div className="m-btns">
-              <Link href="/contact" className="m-btn m-btn-p">Book a free first meeting</Link>
-              <Link href="/who-we-help" className="m-btn m-btn-ow">Who we help</Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroCarousel slides={heroSlides} />
 
       <div className="m-w m-panels">
         {panels.map((p) => (

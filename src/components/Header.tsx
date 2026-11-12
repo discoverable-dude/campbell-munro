@@ -12,13 +12,15 @@ export function Header() {
   const pathname = usePathname();
   const [over, setOver] = useState(true);
   const [open, setOpen] = useState(false);
+  const [closed, setClosed] = useState<string | null>(null);
 
   useEffect(() => {
     const update = () => {
       const hero = document.querySelector("[data-hero]");
       const hd = document.getElementById("site-header");
       if (!hero || !hd) return setOver(false);
-      setOver(hero.getBoundingClientRect().bottom > hd.getBoundingClientRect().bottom + 8);
+      // Turn white on the first bit of scrolling, so the links never blend into the photo.
+      setOver(window.scrollY < 24 && hero.getBoundingClientRect().bottom > hd.getBoundingClientRect().bottom);
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -44,14 +46,22 @@ export function Header() {
         </button>
         <nav id="site-nav" className={`m-nav${open ? " open" : ""}`} aria-label="Main">
           {NAV.map((item) => (
-            <div className="m-ni" key={item.href}>
+            <div className={`m-ni${closed === item.href ? " suppress" : ""}`} key={item.href} onMouseLeave={() => setClosed((c) => (c === item.href ? null : c))}>
               <Link href={item.href} className={`m-nl${isCurrent(item.href) ? " on" : ""}`} aria-current={isCurrent(item.href) ? "page" : undefined} onClick={close}>
                 {item.label}
               </Link>
               {item.children.length > 0 && (
                 <div className="m-dd">
                   {item.children.map((c) => (
-                    <Link key={c.href} href={c.href} onClick={close}>
+                    <Link
+                      key={c.href}
+                      href={c.href}
+                      onClick={(e) => {
+                        e.currentTarget.blur();
+                        setClosed(item.href);
+                        close();
+                      }}
+                    >
                       {c.label}
                     </Link>
                   ))}

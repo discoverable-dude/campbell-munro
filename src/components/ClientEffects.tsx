@@ -32,7 +32,7 @@ export function ClientEffects() {
     );
     els.forEach((el) => {
       const siblings = el.parentElement ? Array.from(el.parentElement.children).filter((c) => c.classList.contains("rv")) : [];
-      el.style.setProperty("--d", Math.min(siblings.indexOf(el), 5) * 0.08 + "s");
+      el.style.setProperty("--d", Math.min(siblings.indexOf(el), 5) * 0.14 + "s");
       io.observe(el);
     });
     return () => io.disconnect();

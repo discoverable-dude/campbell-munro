@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { AccordionItem, CtaBand, PageHead } from "@/components/Sections";
+import { CtaBand, PageHead } from "@/components/Sections";
 import { Icon, IconBox } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { approach, areas, RISK_WARNING, steps } from "@/content/offer";
@@ -17,17 +17,23 @@ export default function WhatWeOfferPage() {
     <>
       <PageHead title="What we offer" intro="Comprehensive financial planning, with your portfolio managed by our own investment team." image="/images/lone-pine.jpg" pos="center 60%" />
 
-      <section className="m-w m-sec m-split" id="planning">
-        <div className="side rv">
+      <section className="m-w m-sec" id="planning">
+        <div className="m-sec-head rv">
           <h2 className="m-h2">Comprehensive financial planning</h2>
           <p><b>What does that mean?</b> One plan that covers every part of your financial life, built with professional planning software and reviewed with you every year.</p>
           <p className="m-gap">Open each area to see what&apos;s included.</p>
         </div>
-        <div className="grow m-acc m-acc-ic rv">
-          {areas.map((a, i) => (
-            <AccordionItem key={a.id} id={a.id} group="offer" open={i === 0} summary={<><IconBox name={a.icon} /><span>{a.title}</span></>}>
+        <div className="m-svc-grid">
+          {areas.map((a) => (
+            <details key={a.id} id={a.id} name="offer" className="m-svc rv">
+              <summary>
+                <IconBox name={a.icon} />
+                <h3>{a.title}</h3>
+                <p>{a.blurb}</p>
+                <span className="m-svc-more" aria-hidden="true"><i /></span>
+              </summary>
               <ul>{a.items.map((it) => <li key={it}>{it}</li>)}</ul>
-            </AccordionItem>
+            </details>
           ))}
         </div>
       </section>
@@ -48,7 +54,7 @@ export default function WhatWeOfferPage() {
                   <p>{s.text}</p>
                 </li>
                 {i < steps.length - 1 && (
-                  <li className="m-arr" aria-hidden="true"><Icon name="arrow" /></li>
+                  <li className="m-arr rv" aria-hidden="true"><Icon name="arrow" /></li>
                 )}
               </Fragment>
             ))}

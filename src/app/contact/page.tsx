@@ -25,6 +25,10 @@ export default function ContactPage() {
             <h3>What happens next</h3>
             <p>An adviser gets in touch within one working day to arrange a time. Your first meeting is free, with no obligation, in person or by video call.</p>
           </div>
+          <div className="m-box m-appt rv">
+            <h3><Icon name="clock" />Visits are by appointment</h3>
+            <p>We&apos;re a working office with no reception, so we can&apos;t see people who turn up unannounced. Please book a meeting first and we&apos;ll confirm where to meet.</p>
+          </div>
           {SITE.offices.map((o) => (
             <div className="m-box rv" key={o.id}>
               <h3><Icon name="pin" />{o.name}</h3>

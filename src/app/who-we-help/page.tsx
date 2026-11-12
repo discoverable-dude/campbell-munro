@@ -51,7 +51,7 @@ export default function WhoWeHelpPage() {
       </section>
 
       <section className="m-w m-sec m-split" id="faq">
-        <div className="side rv">
+        <div className="side m-sticky rv">
           <h2 className="m-h2">Questions people ask</h2>
           <p>Something else on your mind? Ask us in your free first meeting.</p>
         </div>

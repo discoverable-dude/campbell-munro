@@ -32,15 +32,17 @@ export type Person = {
   role: string;
   office: "Crowborough" | "Lichfield";
   bio: string;
+  /** Professional qualifications, shown as badges. [To confirm] Campbell Munro to check these. */
+  credentials?: string[];
   /** Path under /public, e.g. "/team/david-munro.jpg". Placeholder box shown until supplied. */
   photo?: string;
 };
 
 export const team: Person[] = [
   { name: "David Munro", role: "Managing Director", office: "Crowborough", bio: "[David's short bio, 50 to 70 words.]" },
-  { name: "Lewis Munro", role: "Director, DipPFS", office: "Crowborough", bio: "[Lewis's short bio, 50 to 70 words.]" },
-  { name: "Luke Fizia", role: "Chartered Wealth Manager, Chartered FCSI", office: "Crowborough", bio: "[Luke's short bio, 50 to 70 words.]" },
-  { name: "Michael McCulloch", role: "Independent Wealth Manager, CFA, DipPFS", office: "Crowborough", bio: "[Michael's short bio, 50 to 70 words.]" },
+  { name: "Lewis Munro", role: "Director", credentials: ["DipPFS"], office: "Crowborough", bio: "[Lewis's short bio, 50 to 70 words.]" },
+  { name: "Luke Fizia", role: "Chartered Wealth Manager", credentials: ["Chartered FCSI"], office: "Crowborough", bio: "[Luke's short bio, 50 to 70 words.]" },
+  { name: "Michael McCulloch", role: "Independent Wealth Manager", credentials: ["CFA", "DipPFS"], office: "Crowborough", bio: "[Michael's short bio, 50 to 70 words.]" },
   { name: "Miller Perry", role: "Trainee Financial Adviser", office: "Crowborough", bio: "[Miller's short bio, 50 to 70 words.]" },
   { name: "Helen Finn", role: "[Job title to confirm]", office: "Crowborough", bio: "[Helen's short bio, 50 to 70 words.]" },
   { name: "Andrew Fearne", role: "Financial Adviser", office: "Lichfield", bio: "[Andrew's short bio, 50 to 70 words.]" },

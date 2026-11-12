@@ -33,6 +33,11 @@ export function TeamGrid({ team }: { team: Person[] }) {
             <div className="txt">
               <h3>{p.name}</h3>
               <span className="role">{p.role}</span>
+              {p.credentials && (
+                <ul className="m-creds" aria-label="Qualifications">
+                  {p.credentials.map((c) => <li key={c}>{c}</li>)}
+                </ul>
+              )}
               <span className="off">
                 <Icon name="pin" />
                 {p.office}

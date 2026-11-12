@@ -482,3 +482,62 @@ body:has(.fo-page) .site>.m-ft{display:none}
 .m-bands tr:last-child td{border-bottom:0}
 .m-dot{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:10px;vertical-align:-1px}
 @media (prefers-reduced-motion:reduce){.m-seg{transition:none}}
+
+/* ---------- Services: 3 x 2 grid ---------- */
+.m-svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:start}
+.m-svc{background:#FFFFFF;border:1px solid var(--line);border-radius:var(--r);transition:box-shadow .5s ease,border-color .5s ease}
+.m-svc:hover,.m-svc[open]{box-shadow:0 14px 34px rgba(25,34,109,.12)}
+.m-svc[open]{border-color:var(--blue)}
+.m-svc>summary{display:grid;grid-template-columns:1fr auto;gap:10px 12px;align-items:start;padding:26px 24px}
+.m-svc>summary .m-ic{grid-column:1;grid-row:1}
+.m-svc>summary h3{grid-column:1/-1;font-size:21px}
+.m-svc>summary p{grid-column:1/-1;color:var(--muted);font-size:16px;line-height:1.55}
+.m-svc-more{grid-column:2;grid-row:1;width:36px;height:36px;border-radius:999px;border:1.5px solid var(--navy);position:relative}
+.m-svc-more i::before,.m-svc-more i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.8px;background:var(--navy);transform:translate(-50%,-50%);transition:transform .4s ease}
+.m-svc-more i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.m-svc[open] .m-svc-more i::after{transform:translate(-50%,-50%) rotate(0)}
+.m-svc>ul{padding:0 24px 26px 44px;margin:0;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.5;border-top:1px solid var(--line);padding-top:18px;margin-top:-4px}
+@media (max-width:1000px){.m-svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.m-svc-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- Sticky side column (FAQ) ---------- */
+.m-sticky{position:sticky;top:calc(var(--hdh) + 32px);align-self:flex-start}
+@media (max-width:720px){.m-sticky{position:static}}
+
+/* ---------- Team credentials ---------- */
+.m-creds{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:6px 0 2px!important}
+.m-creds li{font-family:var(--fh);font-weight:500;font-size:13px;letter-spacing:.04em;color:var(--navy);background:#FCEFD2;border-radius:999px;padding:3px 12px}
+
+/* ---------- Client stories as a flow ---------- */
+.m-st-flow{display:flex;align-items:stretch;gap:12px;margin-top:16px}
+.m-st-step{flex:1 1 0;min-width:0;background:var(--mist);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:12px}
+.m-st-step .m-ic{background:#FFFFFF}
+.m-st-step h4{font-size:18px}
+.m-st-step li{font-size:16px;line-height:1.5}
+.m-st-step ul{padding-left:20px;display:flex;flex-direction:column;gap:6px;margin:0}
+.m-st-arr{align-self:center}
+.m-st-panel[data-gen] .m-st-step,.m-st-panel[data-gen] .m-st-arr{animation-duration:1.4s;animation-timing-function:cubic-bezier(.22,.61,.36,1);animation-fill-mode:both;animation-delay:calc(var(--i,0) * .9s)}
+.m-st-panel[data-gen="a"] .m-st-step,.m-st-panel[data-gen="a"] .m-st-arr{animation-name:m-flow-a}
+.m-st-panel[data-gen="b"] .m-st-step,.m-st-panel[data-gen="b"] .m-st-arr{animation-name:m-flow-b}
+.m-st-panel[data-gen] .m-st-arr{animation-delay:calc(var(--i,0) * .9s + .5s)}
+@keyframes m-flow-a{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes m-flow-b{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media (max-width:900px){
+  .m-st-flow{flex-direction:column;gap:0}
+  .m-st-arr{transform:rotate(90deg);margin:-6px 0 -6px 28px;align-self:flex-start;position:relative;z-index:1}
+}
+@media (prefers-reduced-motion:reduce){.m-st-panel[data-gen] .m-st-step,.m-st-panel[data-gen] .m-st-arr{animation:none!important}}
+
+/* ---------- Contact appointment note, login ---------- */
+.m-appt{background:#FCEFD2;border-color:#F0D9A0}
+.m-forgot{font-size:14px;color:var(--blue)!important;text-decoration:underline;margin-top:8px}
+
+/* ---------- Icon style options (temporary review page) ---------- */
+.ico-b .m-ic{background:linear-gradient(135deg,#19226D,#015CAB);color:#FFFFFF;border-radius:999px;width:56px;height:56px;font-size:26px}
+.ico-c .m-ic{background:none;color:var(--navy);width:auto;height:auto;border-radius:0;justify-content:flex-start;font-size:44px;padding-bottom:10px;border-bottom:3px solid var(--gorse);align-self:flex-start}
+.ico-c .m-ic svg{stroke-width:1.2}
+.ico-d .m-ic{width:60px;height:60px;border-radius:14px;color:#FFFFFF;font-size:26px;background:linear-gradient(rgba(25,34,109,.62),rgba(25,34,109,.62)),var(--ph-img,url(/images/pines-sky.jpg)) center/cover}
+.ico-e .m-ic{background:var(--mist);color:var(--blue);width:64px;height:64px;border-radius:999px;font-size:28px;border:2px solid #FFFFFF;box-shadow:0 0 0 2px var(--blue)}
+.ico-opt{border-top:8px solid #FFFFFF;padding-block:40px}
+.ico-opt .m-w>h2{font-size:26px;margin-bottom:6px}
+.ico-opt .m-w>p{color:var(--muted);max-width:70ch;margin-bottom:24px!important}

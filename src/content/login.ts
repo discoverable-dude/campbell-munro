@@ -4,6 +4,8 @@ export type Portal = {
   /** [To confirm] Campbell Munro / Discoverable to supply the official login and app URLs. Buttons stay inactive until set. */
   loginUrl?: string;
   appUrl?: string;
+  /** [To confirm] Custom 'forgotten password' link, once Plannr's specification arrives. */
+  forgotUrl?: string;
 };
 
 export const portals: Portal[] = [

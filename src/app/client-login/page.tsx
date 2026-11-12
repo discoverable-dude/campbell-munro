@@ -27,6 +27,7 @@ export default function ClientLoginPage() {
                 </a>
                 {p.appUrl && <a className="m-link" href={p.appUrl} target="_blank" rel="noopener noreferrer">Get the app</a>}
               </div>
+              {p.forgotUrl && <a className="m-forgot" href={p.forgotUrl} target="_blank" rel="noopener noreferrer">Forgotten your password?</a>}
             </div>
           ))}
         </div>

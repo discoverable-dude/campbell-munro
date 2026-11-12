@@ -97,7 +97,7 @@ export default function AboutPage() {
       <section className="m-band" id="team">
         <div className="m-w m-sec">
           <TeamGrid team={team} />
-          <p className="m-note">Bios: 50 to 70 words each, in three sentences: role and qualifications, the clients they help most, and one plain line about them.</p>
+          <p className="m-note">Bios: 50 to 70 words each, professional only: the clients they help most and what they bring. No personal details such as hobbies.</p>
         </div>
       </section>
 

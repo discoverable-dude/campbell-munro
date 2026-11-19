@@ -1,3 +1,4 @@
+import { Divider } from "@/components/Divider";
 import { CtaBand, AccordionItem, PageHead, TextLink } from "@/components/Sections";
 import { IconBox } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
@@ -39,6 +40,8 @@ export default function WhoWeHelpPage() {
           ))}
         </div>
       </section>
+
+      <Divider from="white" to="mist" photo="/images/heath-track.jpg" />
 
       <section className="m-band" id="stories">
         <div className="m-w m-sec">

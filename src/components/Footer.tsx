@@ -2,11 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { FCA_STATEMENT, SITE, toTel } from "@/lib/site";
 
-export type FooterVariant = "mist" | "photo" | "sky";
-
-/** Which footer the site uses. See /footer-options to compare the three. */
-export const FOOTER_VARIANT: FooterVariant = "mist";
-
+/**
+ * The footer is skinned from html[data-footer] (navy | mist | photo | sky), chosen in the design options panel.
+ * Every variant's decoration is in the markup and hidden by CSS unless chosen, so this stays a server component.
+ */
 const LINKS = [
   { label: "Who we help", href: "/who-we-help" },
   { label: "About us", href: "/about-us" },
@@ -16,22 +15,18 @@ const LINKS = [
   { label: "Privacy Notice", href: "/privacy-notice" },
 ];
 
-export function Footer({ variant = FOOTER_VARIANT }: { variant?: FooterVariant }) {
-  const dark = variant === "photo";
+export function Footer() {
   return (
-    <footer className={`m-ft m-ft--${variant}`}>
-      {variant === "photo" && (
-        <>
-          <Image className="m-ft-bg" src="/images/forest-view.jpg" alt="" fill sizes="100vw" quality={60} />
-          <div className="m-ft-wash" aria-hidden="true" />
-        </>
-      )}
-      {variant === "sky" && <Image className="m-ft-mark" src="/images/symbol.png" alt="" width={238} height={240} aria-hidden="true" />}
+    <footer className="m-ft">
+      <Image className="m-ft-bg" src="/images/forest-view.jpg" alt="" fill sizes="100vw" quality={60} />
+      <div className="m-ft-wash" aria-hidden="true" />
+      <Image className="m-ft-mark" src="/images/symbol.png" alt="" width={238} height={240} aria-hidden="true" />
       <div className="m-w m-ft-in">
         <div className="m-ft-grid">
           <div className="m-ft-brand">
             <Link href="/" aria-label="Campbell Munro home">
-              <Image src={dark ? "/images/logo-white.png" : "/images/logo.png"} alt="Campbell Munro" width={235} height={30} />
+              <Image className="ft-logo-col" src="/images/logo.png" alt="Campbell Munro" width={235} height={30} />
+              <Image className="ft-logo-wht" src="/images/logo-white.png" alt="" width={235} height={30} aria-hidden="true" />
             </Link>
             <p>Independent financial planning and investment management for business owners, families and anyone planning their next stage.</p>
           </div>

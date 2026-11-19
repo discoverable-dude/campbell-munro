@@ -3,7 +3,8 @@ import { CtaBand, PageHead } from "@/components/Sections";
 import { FeeCalculator } from "@/components/FeeCalculator";
 import { Icon, IconBox } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
-import { TeamGrid } from "@/components/TeamGrid";
+import { Divider } from "@/components/Divider";
+import { TeamSwitch } from "@/components/TeamSwitch";
 import { feeBands, feeFlow, independence, mdMessage, pillars, team } from "@/content/about";
 import { breadcrumbs, pageMeta } from "@/lib/metadata";
 import { SITE_URL } from "@/lib/site";
@@ -57,6 +58,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Divider from="mist" to="white" photo="/images/forest-view.jpg" />
+
       <section className="m-w m-sec" id="fees">
         <div className="m-sec-head rv">
           <h2 className="m-h2">Transparent about what you pay</h2>
@@ -94,9 +97,11 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <Divider from="white" to="mist" photo="/images/ashdown-valley.jpg" />
+
       <section className="m-band" id="team">
         <div className="m-w m-sec">
-          <TeamGrid team={team} />
+          <TeamSwitch team={team} />
           <p className="m-note">Bios: 50 to 70 words each, professional only: the clients they help most and what they bring. No personal details such as hobbies.</p>
         </div>
       </section>

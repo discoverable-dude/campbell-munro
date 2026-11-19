@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Divider } from "@/components/Divider";
 import { CtaBand, AccordionItem, TextLink } from "@/components/Sections";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { Icon, IconBox } from "@/components/Icon";
@@ -74,6 +75,8 @@ export default function HomePage() {
           <div><TextLink href="/about-us#message">Read David&apos;s full message</TextLink></div>
         </div>
       </section>
+
+      <Divider from="white" to="mist" photo="/images/heather-sunset.jpg" />
 
       <section className="m-band">
         <div className="m-w m-sec">

@@ -35,9 +35,9 @@ export function StoryFlow({ s }: { s: Story }) {
 /** B. A timeline running down the page. */
 export function StoryTimeline({ s }: { s: Story }) {
   const steps = [
-    { icon: "chat", label: "Where he started", h: s.concernsHeading, items: s.concerns },
+    { icon: "chat", label: "Where they started", h: s.concernsHeading, items: s.concerns },
     { icon: "compass", label: "What we did", h: "How we helped", items: s.helped },
-    { icon: "circleCheck", label: "Where he is now", h: "The outcome", items: s.outcome },
+    { icon: "circleCheck", label: "Where they are now", h: "The outcome", items: s.outcome },
   ] as const;
   return (
     <div className="so-wrap">

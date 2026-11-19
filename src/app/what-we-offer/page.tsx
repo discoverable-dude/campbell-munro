@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import { Divider } from "@/components/Divider";
+import { ServicesSwitch } from "@/components/ServicesSwitch";
 import { CtaBand, PageHead } from "@/components/Sections";
 import { Icon, IconBox } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
@@ -23,20 +25,10 @@ export default function WhatWeOfferPage() {
           <p><b>What does that mean?</b> One plan that covers every part of your financial life, built with professional planning software and reviewed with you every year.</p>
           <p className="m-gap">Open each area to see what&apos;s included.</p>
         </div>
-        <div className="m-svc-grid">
-          {areas.map((a) => (
-            <details key={a.id} id={a.id} name="offer" className="m-svc rv">
-              <summary>
-                <IconBox name={a.icon} />
-                <h3>{a.title}</h3>
-                <p>{a.blurb}</p>
-                <span className="m-svc-more" aria-hidden="true"><i /></span>
-              </summary>
-              <ul>{a.items.map((it) => <li key={it}>{it}</li>)}</ul>
-            </details>
-          ))}
-        </div>
+        <ServicesSwitch areas={areas} />
       </section>
+
+      <Divider from="white" to="mist" photo="/images/pines-sky.jpg" />
 
       <section className="m-band" id="working">
         <div className="m-w m-sec">

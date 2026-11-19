@@ -41,6 +41,10 @@ Run `npm run check:placeholders` for the `[square bracket]` content still to sup
 - Old-URL redirects in `src/lib/redirects.ts` (export the live site's URLs first)
 - Compliance sign-off on stories, FAQ and fee wording
 
+## Design review mode
+
+Open any page with `?review=1` to show a **Design options** button (bottom left). It switches the footer, icon style, services layout, section dividers, client story layout and team layout live on the real pages, and can copy the choices as text or a link. It is hidden for normal visitors; `?review=0` hides it again, and `NEXT_PUBLIC_REVIEW_PANEL=true` shows it by default (e.g. on staging). Once the client has chosen, make the winners the defaults and delete `src/components/DesignOptions.tsx` and the option components.
+
 ## Commands
 
 `npm run dev`, `npm run build`, `npm run lint`, `npm run typecheck`.

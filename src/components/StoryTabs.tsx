@@ -3,12 +3,16 @@
 import { Fragment, useCallback, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import type { Story } from "@/content/who";
 import { HASH_EVENT } from "./ClientEffects";
+import { useDesign } from "./DesignOptions";
 import { Icon, IconBox } from "./Icon";
+import { StoryBeforeAfter, StoryOutcomes, StoryTimeline } from "./StoryLayouts";
+import { StoryPhotoTabs } from "./StoryPhotoTabs";
 
 /** All stories are in the server-rendered HTML; the tabs only switch which one is shown. */
 export function StoryTabs({ stories }: { stories: Story[] }) {
   const [active, setActive] = useState(0);
   const [gen, setGen] = useState(0);
+  const { stories: layout } = useDesign();
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const fromHash = useCallback(
@@ -70,25 +74,34 @@ export function StoryTabs({ stories }: { stories: Story[] }) {
         ))}
       </div>
       {stories.map((s, i) => (
-        <div key={s.id} id={s.id} role="tabpanel" aria-labelledby={`tab-${s.id}`} className="m-st-panel" data-gen={active === i ? (gen % 2 ? "a" : "b") : undefined} hidden={active === i ? undefined : ("until-found" as unknown as boolean)}>
-          <h3>{s.title}</h3>
-          <p className="m-st-who">{s.intro}</p>
-          <div className="m-st-flow">
-            {([
-              { icon: "chat", heading: s.concernsHeading, items: s.concerns },
-              { icon: "compass", heading: "How we helped", items: s.helped },
-              { icon: "circleCheck", heading: "The outcome", items: s.outcome },
-            ] as const).map((step, n) => (
-              <Fragment key={step.heading}>
-                <div className="m-st-step" style={{ "--i": n } as CSSProperties}>
-                  <IconBox name={step.icon} />
-                  <h4>{step.heading}</h4>
-                  <ul>{step.items.map((c) => <li key={c}>{c}</li>)}</ul>
-                </div>
-                {n < 2 && <span className="m-arr m-st-arr" style={{ "--i": n } as CSSProperties} aria-hidden="true"><Icon name="arrow" /></span>}
-              </Fragment>
-            ))}
-          </div>
+        <div key={s.id} id={s.id} role="tabpanel" aria-labelledby={`tab-${s.id}`} className={`m-st-panel${layout === "a" ? "" : " so-bare"}`} data-gen={active === i ? (gen % 2 ? "a" : "b") : undefined} hidden={active === i ? undefined : ("until-found" as unknown as boolean)}>
+          {layout === "b" && <StoryTimeline s={s} />}
+          {layout === "c" && <StoryBeforeAfter s={s} />}
+          {layout === "d" && <StoryOutcomes s={s} />}
+          {layout === "e" && <StoryPhotoTabs s={s} />}
+          {layout === "a" && (
+            <>
+              <h3>{s.title}</h3>
+              <p className="m-st-who">{s.intro}</p>
+              <div className="m-st-flow">
+                {([
+                  { icon: "chat", heading: s.concernsHeading, items: s.concerns },
+                  { icon: "compass", heading: "How we helped", items: s.helped },
+                  { icon: "circleCheck", heading: "The outcome", items: s.outcome },
+                ] as const).map((step, n) => (
+                  <Fragment key={step.heading}>
+                    <div className="m-st-step" style={{ "--i": n } as CSSProperties}>
+                      <IconBox name={step.icon} />
+                      <h4>{step.heading}</h4>
+                      <ul>{step.items.map((c) => <li key={c}>{c}</li>)}</ul>
+                    </div>
+                    {n < 2 && <span className="m-arr m-st-arr" style={{ "--i": n } as CSSProperties} aria-hidden="true"><Icon name="arrow" /></span>}
+                  </Fragment>
+                ))}
+              </div>
+
+            </>
+          )}
         </div>
       ))}
       <p className="m-note">Stories are illustrative and to be signed off by compliance before launch.</p>

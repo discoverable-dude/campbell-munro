@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Source_Sans_3 } from "next/font/google";
 import { ClientEffects } from "@/components/ClientEffects";
+import { DesignPanel } from "@/components/DesignOptions";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { JsonLd } from "@/components/JsonLd";
@@ -62,10 +63,16 @@ const organisation = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${outfit.variable} ${source.variable}`}>
+    <html lang="en-GB" className={`${outfit.variable} ${source.variable}`} data-footer="mist" data-icons="a" suppressHydrationWarning>
       <head>
-        {/* Scroll-reveal styles only apply once JS is running, so content is never hidden without it. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Sets "js" (scroll-reveal styles only apply once JS runs, so content is never hidden without it) and applies any
+            footer/icon choice from the design options panel before first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var d=document.documentElement;d.classList.add('js');try{var s={};try{s=JSON.parse(localStorage.getItem('cm-design')||'{}')}catch(e){}var q=new URLSearchParams(location.search).get('design');if(q){q.split(',').forEach(function(p){var a=p.split(':');if(a[0]&&a[1])s[a[0]]=a[1]})}if(/^(navy|mist|photo|sky)$/.test(s.footer||''))d.dataset.footer=s.footer;if(/^[a-e]$/.test(s.icons||''))d.dataset.icons=s.icons}catch(e){}})()",
+          }}
+        />
       </head>
       <body>
         <div className="site">
@@ -73,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main id="main">{children}</main>
           <Footer />
+          <DesignPanel />
         </div>
         <ClientEffects />
         <JsonLd data={organisation} />

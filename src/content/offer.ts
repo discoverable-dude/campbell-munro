@@ -24,3 +24,5 @@ export const approach: { icon: IconName; title: string; text: string }[] = [
 ];
 
 export const RISK_WARNING = "The value of investments and the income from them can go down as well as up, and you may get back less than you invest.";
+
+export type Area = (typeof areas)[number];
